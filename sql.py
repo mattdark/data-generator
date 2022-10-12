@@ -2,28 +2,12 @@ from multiprocessing.dummy import Pool as ThreadPool
 from multiprocessing import cpu_count
 from sqlalchemy.orm import scoped_session
 
-from faker import Faker
-import pandas as pd
 import numpy as np
-from tqdm import tqdm
 
+from modules.dataframe import create_dataframe
 from modules.schema import Employee
-from modules.base_mysql import Session, engine, Base
-#from modules.base_psql import Session, engine, Base
+from modules.base import Session, engine, Base
 
-fake = Faker()
-
-def create_dataframe(x):
-    data = pd.DataFrame()
-    for i in tqdm(range(x), desc='Creating DataFrame'):
-        data.loc[i, 'first_name'] = fake.first_name()
-        data.loc[i, 'last_name'] = fake.last_name()
-        data.loc[i, 'job'] = fake.job()
-        data.loc[i, 'address'] = fake.address()
-        data.loc[i, 'city'] = fake.city()
-        data.loc[i, 'email'] = fake.email()
-    return data
-      
 def load_data(data):
     session = Session()
     for row in tqdm(data.itertuples(), desc='Loading Data'):

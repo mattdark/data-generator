@@ -1,8 +1,7 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, Integer
 
-from .base_mysql import Base
-#from .base_psql import Base
+from .base import Base
 
 class Employee(Base):
     __tablename__ = 'employee'
