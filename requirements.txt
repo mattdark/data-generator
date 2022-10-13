@@ -1,0 +1,7 @@
+pandas
+sqlalchemy
+PyMySQL
+tqdm
+faker
+psycopg2
+pymongo

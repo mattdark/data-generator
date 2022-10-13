@@ -1,0 +1,9 @@
+name: percona
+dependencies:
+  - python=3.10
+  - pandas
+  - sqlalchemy
+  - PyMySQL
+  - tqdm
+  - psycopg2
+  - pymongo
