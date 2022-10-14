@@ -1,36 +1,15 @@
-from multiprocessing.dummy import Pool as ThreadPool
+from multiprocessing import Pool
 from multiprocessing import cpu_count
-from sqlalchemy.orm import scoped_session
-
-import numpy as np
-
+import pandas as pd
 from modules.dataframe import create_dataframe
-from modules.schema import Employee
-from modules.base import Session, engine, Base
-
-def load_data(data):
-    session = Session()
-    for row in tqdm(data.itertuples(), desc='Loading Data'):
-        e = Employee(row.first_name, row.last_name, row.job, row.address, row.city, row.email)
-        session.add(e)
-        session.commit()
-
-def thread_worker(data):
-    load_data(data)
-
-def work_parallel(data, thread_number=4):
-    pool = ThreadPool(thread_number)
-    results = pool.map(thread_worker, data)
+from modules.schema import schema
+from modules.base import Session, engine
 
 if __name__ == "__main__":
-    Base.metadata.create_all(engine)
-
-    data = create_dataframe(50000)
     num_cores = cpu_count() - 1
-    df_split = np.array_split(data, num_cores)
-
-    S = scoped_session(Session)
-
-    work_parallel(df_split, num_cores)
-
-    S.remove()
+    with Pool() as pool:
+        data = pd.concat(pool.map(create_dataframe, range(num_cores)))
+    data.to_sql(name='employees', con=engine, if_exists = 'append', index=False, dtype=schema)
+    with engine.connect() as conn:
+        conn.execute("ALTER TABLE employees ADD id INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;")
+        #conn.execute("ALTER TABLE employees ADD COLUMN id SERIAL PRIMARY KEY;")

@@ -1,10 +1,13 @@
+from multiprocessing import cpu_count
 import pandas as pd
 from tqdm import tqdm
 from faker import Faker
 
 fake = Faker()
 
-def create_dataframe(x):
+num_cores = cpu_count() - 1
+def create_dataframe(arg):
+    x = int(60000/num_cores)
     data = pd.DataFrame()
     for i in tqdm(range(x), desc='Creating DataFrame'):
         data.loc[i, 'first_name'] = fake.first_name()

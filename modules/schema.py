@@ -1,23 +1,9 @@
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, Integer
-
-from .base import Base
-
-class Employee(Base):
-    __tablename__ = 'employee'
-
-    employee_id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
-    first_name = Column(String(50), nullable=False)
-    last_name = Column(String(50), nullable=False)
-    job = Column(String(200), nullable=False)
-    address = Column(String(200), nullable=False)
-    city = Column(String(200), nullable=False)
-    email = Column(String(200), nullable=False)
-
-    def __init__(self, first_name, last_name, job, address, city, email):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.job = job
-        self.address = address
-        self.city = city
-        self.email = email
+from sqlalchemy.types import *
+schema = {
+    "first_name": String(50),
+    "last_name": String(50),
+    "job": String(100),
+    "address": String(200),
+    "city": String(100),
+    "email": String(50)
+}
