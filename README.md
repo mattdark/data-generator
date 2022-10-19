@@ -421,7 +421,7 @@ $ python sql.py
 This script will do the following:
 * Generate test data with the Faker library
 * Create a Pandas DataFrame
-* Import the DataFrame into MySQL
+* Import the DataFrame into PostgreSQL
 * Add the `id` column and set it as the primary key
 
 A progress bar was added using tqdm.
@@ -446,6 +446,14 @@ Run the script
 ```
 $ python mongodb.py
 ```
+
+This script will do the following:
+* Generate test data with the Faker library
+* Create a Pandas DataFrame
+* Import the DataFrame into MongoDB
+* Add the id column and set it as the primary key
+
+A progress bar was added using tqdm.
 
 <!-- ROADMAP -->
 ## Roadmap
