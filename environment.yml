@@ -7,3 +7,4 @@ dependencies:
   - tqdm
   - psycopg2
   - pymongo
+  - faker
