@@ -501,9 +501,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Mario García - [@mariogmd](https://twitter.com/mariogmd) - mario.garcia@percona.com
+Mario García - [@mariogmd](https://twitter.com/mariogmd) - hi@mariog.xyz
 
-Project Link: [https://github.com/mattdark/json-mysql-importer](https://github.com/mattdark/json-mysql-importer)
+Project Link: [https://github.com/mattdark/data-generator](https://github.com/mattdark/data-generator)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
