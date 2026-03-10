@@ -62,11 +62,10 @@ def get_client() -> Union[SASession, MongoClient]:
     if db_type in {"mysql", "postgres"}:
         url = _build_sql_url(db_type)
         engine = create_engine(url)
-        session_local = sessionmaker(bind=engine)
-        return session_local()
+        return db_type, engine
 
     if db_type == "mongodb":
         uri = _build_mongo_uri()
-        return MongoClient(uri)
+        return db_type, MongoClient(uri)
 
     raise ValueError(f"Unsupported DB_TYPE: {db_type!r}")
