@@ -1,6 +1,6 @@
-name: percona
+name: data_generator
 dependencies:
-  - python=3.10
+  - python=3.13
   - pandas
   - sqlalchemy
   - PyMySQL
@@ -8,3 +8,4 @@ dependencies:
   - psycopg2
   - pymongo
   - faker
+  - python-dotenv
